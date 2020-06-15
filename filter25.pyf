@@ -1,0 +1,17 @@
+!    -*- f90 -*-
+! Note: the context of this file is case sensitive.
+
+python module filter25 ! in 
+    interface  ! in :filter25
+        subroutine filter25(zi,z,li,lj,nfilt) ! in :filter25:filter25.f
+            real intent(in,out),dimension(li,lj) :: zi
+            real dimension(li,lj),depend(li,lj) :: z
+            integer optional,check(shape(zi,0)==li),depend(zi) :: li=shape(zi,0)
+            integer optional,check(shape(zi,1)==lj),depend(zi) :: lj=shape(zi,1)
+            integer :: nfilt
+        end subroutine filter25
+    end interface 
+end python module filter25
+
+! This file was auto-generated with f2py (version:1).
+! See http://cens.ioc.ee/projects/f2py2e/

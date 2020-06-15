@@ -1,0 +1,62 @@
+!    -*- f90 -*-
+python module vertical_interpolation_code
+    interface
+        subroutine tsadj(plat,plon,phis_old,phis_new,ts)
+            integer intent(in):: plat
+            integer intent(in):: plon
+            real*8 dimension(plon,plat),intent(in),depend(plon,plat) :: phis_old
+            real*8 dimension(plon,plat),intent(in),depend(plon,plat) :: phis_new
+            real*8 dimension(plon,plat),intent(out),depend(plon,plat) :: ts
+        end subroutine tsadj
+        subroutine vert_quad_opt1(plevi,plevip1,plev,plat,plon,t_old,pressi_m,pressi_i,presso_m,phis_old,ps_old,t_new,loglin)
+            integer intent(in):: plevi
+            integer intent(in):: plevip1
+            integer intent(in):: plev
+            integer intent(in):: plat
+            integer intent(in):: plon
+            real*8 dimension(plevi,plon,plat),intent(in),depend(plevi,plon,plat) :: t_old
+            real*8 dimension(plevi,plon,plat),intent(in),depend(plevi,plon,plat) :: pressi_m
+            real*8 dimension(plevip1,plon,plat),intent(in),depend(plevip1,plon,plat) :: pressi_i
+            real*8 dimension(plev,plon,plat),intent(in),depend(plev,plon,plat) :: presso_m
+            real*8 dimension(plon,plat),intent(in),depend(plon,plat) :: phis_old
+            real*8 dimension(plon,plat),intent(in),depend(plon,plat) :: ps_old
+            real*8 dimension(plev,plon,plat),intent(out),depend(plev,plon,plat) :: t_new
+            integer intent(in):: loglin
+        end subroutine vert_quad_opt1
+        subroutine vert_int_opt2(plat,plon,plevi,plevo,pressi,presso,xxi,xxo,loglin)
+            integer intent(in):: plat
+            integer intent(in):: plon
+            integer intent(in):: plevi
+            integer intent(in):: plevo
+            real*8 dimension(plevi,plon,plat),intent(in),depend(plevi,plon,plat) :: pressi
+            real*8 dimension(plevo,plon,plat),intent(in),depend(plevo,plon,plat) :: presso
+            real*8 dimension(plevi,plon,plat),intent(in),depend(plevi,plon,plat) :: xxi
+            real*8 dimension(plevo,plon,plat),intent(out),depend(plevo,plon,plat) :: xxo
+            integer intent(in):: loglin
+        end subroutine vert_int_opt2
+        subroutine vert_int_opt1(plat,plon,plevi,plevo,pressi,presso,xxi,xxo,loglin)
+            integer intent(in):: plat
+            integer intent(in):: plon
+            integer intent(in):: plevi
+            integer intent(in):: plevo
+            real*8 dimension(plevi,plon,plat),intent(in),depend(plevi,plon,plat) :: pressi
+            real*8 dimension(plevo,plon,plat),intent(in),depend(plevo,plon,plat) :: presso
+            real*8 dimension(plevi,plon,plat),intent(in),depend(plevi,plon,plat) :: xxi
+            real*8 dimension(plevo,plon,plat),intent(out),depend(plevo,plon,plat) :: xxo
+            integer intent(in):: loglin
+        end subroutine vert_int_opt1
+        subroutine psadj(plev,plevp1,plat,plon,t,press_m,press_i,phis_old,phis_new,ps_old,ps_new)
+            integer intent(in):: plev
+            integer intent(in):: plevp1
+            integer intent(in):: plat
+            integer intent(in):: plon
+            real*8 dimension(plon,plat,plev),intent(in),depend(plon,plat,plev) :: t
+            real*8 dimension(plon,plat,plev),intent(in),depend(plon,plat,plev) :: press_m
+            real*8 dimension(plon,plat,plevp1),intent(in),depend(plon,plat,plevp1) :: press_i
+            real*8 dimension(plon,plat),intent(in),depend(plon,plat) :: phis_old
+            real*8 dimension(plon,plat),intent(in),depend(plon,plat) :: phis_new
+            real*8 dimension(plon,plat),intent(in),depend(plon,plat) :: ps_old
+            real*8 dimension(plon,plat),intent(out),depend(plon,plat) :: ps_new
+        end subroutine psadj
+    end interface 
+end python module vertical_interpolation_code

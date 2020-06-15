@@ -1,0 +1,17 @@
+!    -*- f90 -*-
+! Note: the context of this file is case sensitive.
+
+python module filterG ! in 
+    interface  ! in :filterG
+        subroutine filterg(f,w,n,m,kindex) ! in :filterG:filterG.f
+            real intent(in,out),dimension(n,m) :: f
+            real dimension(n,m),depend(n,m) :: w
+            integer optional,check(shape(f,0)==n),depend(f) :: n=shape(f,0)
+            integer optional,check(shape(f,1)==m),depend(f) :: m=shape(f,1)
+            integer :: kindex
+        end subroutine filterg
+    end interface 
+end python module filterG
+
+! This file was auto-generated with f2py (version:1).
+! See http://cens.ioc.ee/projects/f2py2e/

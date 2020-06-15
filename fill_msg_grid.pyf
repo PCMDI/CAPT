@@ -1,0 +1,36 @@
+!    -*- f90 -*-
+! Note: the context of this file is case sensitive.
+
+python module fill_msg_grid ! in 
+    interface  ! in :fill_msg_grid
+        subroutine poisxy1(xio,mx,ny,xmsg,guess,gtype,nscan,epsx,relc,mscan,ier) ! in :fill_msg_grid:fill_msg_grid.f
+            double precision dimension(mx,ny),intent(inout) :: xio
+            integer optional,check(shape(xio,0)==mx),depend(xio) :: mx=shape(xio,0)
+            integer optional,check(shape(xio,1)==ny),depend(xio) :: ny=shape(xio,1)
+            double precision :: xmsg
+            integer :: guess
+            integer :: gtype
+            integer :: nscan
+            double precision :: epsx
+            double precision :: relc
+            integer :: mscan
+            integer :: ier
+        end subroutine poisxy1
+        subroutine poisxy2(a,il,jl,amsg,maxscn,crit,relc,guess,gtype,resmax,mscan) ! in :fill_msg_grid:fill_msg_grid.f
+            double precision dimension(il,jl),intent(inout) :: a
+            integer optional,check(shape(a,0)==il),depend(a) :: il=shape(a,0)
+            integer optional,check(shape(a,1)==jl),depend(a) :: jl=shape(a,1)
+            double precision :: amsg
+            integer :: maxscn
+            double precision :: crit
+            double precision :: relc
+            integer :: guess
+            integer :: gtype
+            double precision :: resmax
+            integer :: mscan
+        end subroutine poisxy2
+    end interface 
+end python module fill_msg_grid
+
+! This file was auto-generated with f2py (version:1).
+! See http://cens.ioc.ee/projects/f2py2e/
